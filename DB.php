@@ -30,11 +30,17 @@ class DB
     {
       $stmt= self::$instance->prepare($query);
       if (empty($data)) {
-        $stmt->execute();
+        if ($stmt->execute()) {
+          $stmt->closeCursor();
+          return 'true';
+        }
       }else {
-        $stmt->execute($data);
+        if ($stmt->execute($data)) {
+          $stmt->closeCursor();
+          return 'true';
+        }
       }
-      $stmt->closeCursor();
+      return 'false';
     }
     else {
       echo 'No connection';
