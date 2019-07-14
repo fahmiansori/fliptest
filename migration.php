@@ -32,12 +32,7 @@ class Migration
   public function importTable()
   {
     $runQ = $this->db->query($this->sql);
-    var_dump($runQ);
-    if ($runQ == 'true') {
-      return 'Table imported';
-    }else {
-      return 'Failed while importing table!';
-    }
+    return 'done';
   }
 }
 
